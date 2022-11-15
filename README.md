@@ -1,0 +1,3 @@
+# msgr
+
+Simple websocket app
