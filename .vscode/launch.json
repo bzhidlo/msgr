@@ -5,19 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Client",
+            "name": "Python: FastAPI",
             "type": "python",
             "request": "launch",
-            "program": "client/main.py",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "Server",
-            "type": "python",
-            "request": "launch",
-            "program": "D:/my/msgr/server/main.py",
-            "console": "integratedTerminal",
+            "module": "uvicorn",
+            "args": [
+                "main:app"
+            ],
+            "jinja": true,
             "justMyCode": true
         }
     ]
