@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declrarative import declrarative_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import cx_Oracle
 
-def db_init():
+def db_connect():
     # pre-requisits for connection
     host='localhost'
     port=1521
