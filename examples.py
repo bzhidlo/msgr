@@ -1,34 +1,32 @@
-from typing import List
-from fastapi import FastAPI, WebSocket
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI
+
+from enum import Enum
 
 app = FastAPI()
 
-html = ""
-with open('index.html', 'r') as f:
-    html = f.read()
-
 @app.get("/")
-async def get():
-    return HTMLResponse(html)
-    
-class ConnectionManager:
-    def __init__(self):
-        self.connections: List[WebSocket] = []
 
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        self.connections.append(websocket)
+async def root():
+    return {"message": "Тык тык"}
 
-    async def broadcast(self, data: str):
-        for connection in self.connections:
-            await connection.send_text(data)
+# пример enum
+class ModelName(str, Enum):
+    alexnet = "alexnet"
+    resnet = "resnet"
+    lenet = "lenet"
 
 
-manager = ConnectionManager()
+@app.get("/model/{model_name}")
+async def get_model(model_name: ModelName):
+    if model_name is ModelName.alexnet:
+        return {"model_name": model_name, "message": "Deep Learning FTW!"}
+
+    if model_name.value == "lenet":
+        return {"model_name": model_name, "message": "LeCNN all the images"}
+
+    return {"model_name": model_name, "message": "Have some residuals"}
 
 
-<<<<<<< HEAD
 #пример запросов query параметры
 from typing import Union
 
@@ -103,11 +101,3 @@ def fake_save_user(user_in: UserIn):
 async def create_user(user_in: UserIn):
     user_saved = fake_save_user(user_in)
     return user_saved
-=======
-@app.websocket("/ws/{client_id}")
-async def websocket_endpoint(websocket: WebSocket, client_id: int):
-    await manager.connect(websocket)
-    while True:
-        data = await websocket.receive_text()
-        await manager.broadcast(f"Client {client_id}: {data}")
->>>>>>> 2d9a2934f22173d97c045bc6172e5f671148a314
