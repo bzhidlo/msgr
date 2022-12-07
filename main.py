@@ -1,17 +1,20 @@
 from typing import List
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, WebSocket, APIRouter, Request
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 
 app = FastAPI()
 
-html = ""
-with open('index.html', 'r') as f:
-    html = f.read()
+app.mount("/static", StaticFiles(directory="static", html = True), name="static")
+templates = Jinja2Templates(directory="static")
 
 @app.get("/")
-async def get():
-    return HTMLResponse(html)
+async def get(request : Request):
+    return templates.TemplateResponse("login/template.html", {"request": request})
     
+''' 
 class ConnectionManager:
     def __init__(self):
         self.connections: List[WebSocket] = []
@@ -27,10 +30,11 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
     await manager.connect(websocket)
     while True:
         data = await websocket.receive_text()
         await manager.broadcast(f"Client {client_id}: {data}")
+
+'''

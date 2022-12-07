@@ -1,0 +1,50 @@
+body{
+  background-image: url('../src/3281406.jpg');
+}
+
+form {
+  border: 3px solid #f1f1f1;
+  padding: 1%;
+  background-color: white;
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password] {
+  width: 10%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  width: 5%;
+  background-color: #df70d0;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+  padding: center;
+  margin: center;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+
+  .cancelbtn {
+    width: 100%;
+  }
+}
