@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from models.users import User
 
 router = APIRouter(
     prefix="/users",
@@ -7,6 +8,10 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.post("/login")
-async def login():
-    return [{'logined' : 'yes'}]
+@router.post("/login", response_model=User)
+async def login(user: User):
+    return user
+
+@router.post("/register")
+async def login(user: User):
+    return user

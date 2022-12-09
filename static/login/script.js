@@ -1,15 +1,41 @@
 "use strict";
 
-//мб надо в отдельный класс зафигачить
+async function login(event) {
 
-function login(event) {
+    let name = document.getElementById('name');
+    let password = document.getElementById('password');
 
     let user = {
-        name: document.getElementById('name'),
-        password: document.getElementById('password')
+        name: name.value,
+        password: password.value
     }
+  
+    let response = await fetch('/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
 
-    let response = fetch('/users', {
+    if (response.ok) { 
+        let json = await response.json();
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+    
+}
+
+async function register(event) {
+    let name = document.getElementById('name');
+    let password = document.getElementById('password');
+
+    let user = {
+        name: name.value,
+        password: password.value
+    }
+  
+    let response = fetch('/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -19,13 +45,10 @@ function login(event) {
 
     if (response.ok) {
         let json = response.json();
-    } else {
+        alert(json);
+      } else {
         alert("Ошибка HTTP: " + response.status);
-    }
-}
-
-function register(event) {
-    alert('register')
+      }
 }
 
 

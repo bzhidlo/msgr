@@ -3,19 +3,21 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" href="{{ url_for('static', path='src/favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='login/style.css') }}" media="screen" />
     <title>Chat</title>
 </head>
 
 <body>
     <div class="background">
-        <form action="" onsubmit="login(event)" id="form">
+        <form method="" onsubmit="login(event)" id="form">
             <div class = "container">
+                <b>Login</b><br>
                 <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" id = 'name' name="uname" required>
+                <input type="text" placeholder="Enter Username" id = 'name' required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" id = 'password' name="psw" required>
+                <input type="password" placeholder="Enter Password" id = 'password' required>
 
                 <button type="submit">Login</button>
                 or
