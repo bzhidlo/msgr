@@ -9,7 +9,7 @@ async function login(event) {
         name: name.value,
         password: password.value
     }
-  
+
     let response = await fetch('/users/login', {
         method: 'POST',
         headers: {
@@ -18,12 +18,12 @@ async function login(event) {
         body: JSON.stringify(user)
     });
 
-    if (response.ok) { 
+    if (response.ok) {
         let json = await response.json();
     } else {
         alert("Ошибка HTTP: " + response.status);
     }
-    
+
 }
 
 async function register(event) {
@@ -34,8 +34,8 @@ async function register(event) {
         name: name.value,
         password: password.value
     }
-  
-    let response = fetch('/users/login', {
+
+    let response = await fetch('/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -44,11 +44,10 @@ async function register(event) {
     });
 
     if (response.ok) {
-        let json = response.json();
-        alert(json);
-      } else {
+        let json = await response.json();
+    } else {
         alert("Ошибка HTTP: " + response.status);
-      }
+    }
 }
 
 

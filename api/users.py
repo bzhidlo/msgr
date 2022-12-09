@@ -13,5 +13,5 @@ async def login(user: User):
     return user
 
 @router.post("/register")
-async def login(user: User):
+async def login(user: User, response_model=User):
     return user
