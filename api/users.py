@@ -7,6 +7,6 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/")
+@router.post("/login")
 async def login():
-    return [{"username": "Anya", "password" : "bananya"}]
+    return [{'logined' : 'yes'}]
