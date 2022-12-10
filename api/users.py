@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from models.users import User
+from schemas.users import User
 
 router = APIRouter(
     prefix="/users",
