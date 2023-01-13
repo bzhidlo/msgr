@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from schemas.users import User
 
+
 router = APIRouter(
     prefix="/users",
     tags=["users"],

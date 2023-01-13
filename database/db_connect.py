@@ -1,22 +1,20 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+
 import cx_Oracle
+from database.config import host, port, sid
+
+import sys
+import os
 
 def db_connect():
-    # pre-requisits for connection
-    host='localhost'
-    port=1521
-    sid='orcl'
-    user='c##sqlserverguides'
-    pwd='root'
+    cx_Oracle.init_oracle_client(lib_dir= r"D:/oracle/instantclient_21_7")
 
     preq = cx_Oracle.makedsn(host, port, sid=sid)
 
-    # connection string
     con_string = 'oracle://{user}:{pwd}@{preq}'
 
-    # using SQLAlchemy to create connection
     engine = create_engine(
         con_string,
         convert_unicode=False,
@@ -28,3 +26,5 @@ def db_connect():
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     Base = declarative_base()
+
+    Base.metadata.create_all(bind=engine)

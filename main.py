@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
-from database.db_connect import db_connect
+#from database.db_connect import db_connect
 from api.users import router as users_router
 
 #middleware
@@ -17,7 +17,8 @@ origins = [
 def startup():
     app = FastAPI()
     app.include_router(users_router)
-    db_connect()
+    #Base = db_connect()
+    
     app.mount("/static", StaticFiles(directory="static", html = True), name="static")
     templates = Jinja2Templates(directory="static")
     app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
