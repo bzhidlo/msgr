@@ -9,20 +9,19 @@ from settings.config import settings
 #from database.db_connect import db_connect
 from api.users import router as users_router
 
-#middleware
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-]
 
 def startup():
-    app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
+    # app
+    app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
+    # router
     app.include_router(users_router)
-    #Base = db_connect()
-    
+    # Base = db_connect()
+    # mount static files
     app.mount("/static", StaticFiles(directory="static", html = True), name="static")
+    # enable template engine
     templates = Jinja2Templates(directory="static")
-    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+    # middleware
+    app.add_middleware(CORSMiddleware, allow_origins=settings.ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
     return app, templates
 
