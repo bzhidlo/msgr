@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
+from settings.config import settings
 
 #from database.db_connect import db_connect
 from api.users import router as users_router
@@ -15,7 +16,7 @@ origins = [
 ]
 
 def startup():
-    app = FastAPI()
+    app = FastAPI(title=settings.PROJECT_NAME,version=settings.PROJECT_VERSION)
     app.include_router(users_router)
     #Base = db_connect()
     
