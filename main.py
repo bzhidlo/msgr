@@ -21,8 +21,8 @@ def startup():
     templates = Jinja2Templates(directory="static")
     # middleware
     app.add_middleware(CORSMiddleware, allow_origins=settings.ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
-    Base.metadata.create_all(engine)
-    
+    Base.metadata.create_all(bind=engine)
+
     return app, templates
 
 app, templates = startup()
