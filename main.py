@@ -9,9 +9,6 @@ from settings.config import settings
 from database.session import Base, engine, SessionLocal
 from api.users import router as users_router
 
-from schemas.users import create_user, get_user_by_id, UserCreate
-
-
 def startup():
     # app
     app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
@@ -28,10 +25,6 @@ def startup():
     return app, templates
 
 app, templates = startup()
-#test
-db = SessionLocal()
-create_user(db, UserCreate(login='Ann', password='123', username='Аня'))
-get_user_by_id(db, 1)
 
 @app.get("/")
 async def get(request : Request):

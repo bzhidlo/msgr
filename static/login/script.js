@@ -6,11 +6,11 @@ async function login(event) {
     let password = document.getElementById('password');
 
     let user = {
-        name: name.value,
+        login: name.value,
         password: password.value
     }
-
-    let response = await fetch('/users/login', {
+    
+    let response = await fetch('/users/login/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -35,7 +35,7 @@ async function register(event) {
         password: password.value
     }
 
-    let response = await fetch('/users/login', {
+    let response = await fetch('/users/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
