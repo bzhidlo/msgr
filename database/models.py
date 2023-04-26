@@ -43,12 +43,12 @@ class Chat(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    created_at = Column(DateTime, server_default=func.now())
 
     members = relationship("User", secondary='chats_to_users', back_populate='chats')
 
     def __repr__(self):
         return f'<Post "{self.name}">'
+
 
 chats_to_users = Table('chats_to_users',
                     Column('user_id', Integer, ForeignKey('user.id')),

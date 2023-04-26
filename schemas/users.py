@@ -1,5 +1,17 @@
 from pydantic import BaseModel
 
-class User(BaseModel):
-    name: str
-    password: str | None = None
+class UserBase(BaseModel):
+    login: str
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class User(UserBase):
+    id: int
+    deleted: bool
+    username: str
+
+    class Config:
+        orm_mode = True
