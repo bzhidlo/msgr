@@ -1,5 +1,5 @@
-from pydantic import BaseModel, datetime
-
+from pydantic import BaseModel
+from datetime import datetime
 
 class MessageBase(BaseModel):
     body: str
@@ -12,8 +12,8 @@ class MessageCreate(MessageBase):
 
 class Message(MessageCreate):
     id: int
-    created_at: datetime.datetime
-    updated_at: datetime.datetime
+    created_at: datetime
+    updated_at: datetime
     read: bool
 
     class Config:

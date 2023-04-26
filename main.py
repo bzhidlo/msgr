@@ -6,8 +6,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from settings.config import settings
 
-from database.session import Base, engine
+from database.session import Base, engine, SessionLocal
 from api.users import router as users_router
+
+from schemas.users import create_user, get_user_by_id, UserCreate
 
 
 def startup():
@@ -26,6 +28,10 @@ def startup():
     return app, templates
 
 app, templates = startup()
+#test
+db = SessionLocal()
+create_user(db, UserCreate(login='Ann', password='123', username='Аня'))
+get_user_by_id(db, 1)
 
 @app.get("/")
 async def get(request : Request):

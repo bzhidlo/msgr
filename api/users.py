@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schemas.users import User
+from schemas.users import User, create_user
 
 
 router = APIRouter(
@@ -14,4 +14,5 @@ async def login(user: User):
 
 @router.post("/register")
 async def register(user: User, response_model=User):
+    create_user(user)
     return user
